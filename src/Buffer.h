@@ -23,7 +23,7 @@ public:
 
     bool isEmpty() const{ return getReadableSize() == 0; };
 
-    std::string retrieve(int ignoreLen);
+    std::string retrieve(int ignore_len);
 
 private:
     bool ensureSpace(size_t len);

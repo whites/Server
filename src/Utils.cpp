@@ -16,3 +16,12 @@ int EPollUtils::epCtl(int epfd, int opType, int fd, uint32_t event)
     ev.data.fd = fd;
     return epoll_ctl(epfd, opType, fd, &ev);
 }
+
+int LuaUtils::doFile(lua_State *L, const char *filename)
+{
+    if (luaL_dofile(L, filename))
+    {
+        return 1;
+    }
+    return 0;
+}

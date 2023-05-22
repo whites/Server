@@ -52,8 +52,8 @@ void Buffer::makeSpace(size_t len)
     }
 }
 
-std::string Buffer::retrieve(int ignoreLen = 0)
+std::string Buffer::retrieve(int ignore_len = 0)
 {
-    std::string res(&*(buffer_.begin() + readIndex_ + ignoreLen), getReadableSize() - ignoreLen);
+    std::string res(&*(buffer_.begin() + readIndex_ + ignore_len), getReadableSize() - ignore_len);
     return res;
 }
