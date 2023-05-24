@@ -4,7 +4,9 @@ project(Server VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-set(CMAKE_CXX_FLAGS   "-g")
+set(CMAKE_CXX_FLAGS  "-g -std=c++11")
+
+set(CMAKe_cxx)
 
 SET(CMAKE_BUILD_TYPE "Debug")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
