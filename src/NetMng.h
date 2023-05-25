@@ -7,21 +7,26 @@
 #include <deque>
 #include <map>
 #include <thread>
+#include "ServerApp.h"
 
-class NetMng
+class NetModule : public Module
 {
     public:
-        static NetMng* GetInstance()  // singleton
+        static NetModule* GetInstance()  // singleton
         {
-            static NetMng netMng;
+            static NetModule netMng;
             return &netMng;
         }
     
     private:
-        NetMng() = default;
-        ~NetMng() = default;
-        NetMng(const NetMng&);
-        NetMng& operator=(const NetMng&);
+        NetModule() = default;
+        ~NetModule() = default;
+        NetModule(const NetModule&);
+        NetModule& operator=(const NetModule&) = delete;
+
+    public:
+        bool moduleInit();
+        bool moduleDestroy();
     
     private:
         int port_ = 3000;

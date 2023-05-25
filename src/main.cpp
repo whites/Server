@@ -1,33 +1,25 @@
-#include "NetMng.h"
 #include <signal.h>
-
-extern "C"
-{
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-}
-
-static bool running = true;
+#include "NetMng.h"
+#include "ServerApp.h"
 
 static void sig_int(int num)
 {
-    NetMng::GetInstance()->stop();
-    running = false;
+    ServerApp::active_ = false;
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    lua_State * ls = luaL_newstate(); 
-    luaL_openlibs(ls);
-
-    NetMng::GetInstance()->start();
-
     signal(SIGINT, sig_int);
 
-    while(running)
+    ServerApp serverApp;
+
+    // register modules
+    if(serverApp.init(argc, argv))
     {
-        //idle
+        serverApp.registerModule(NetModule::GetInstance());
+
+        serverApp.start();
     }
+
     return 0;
 }

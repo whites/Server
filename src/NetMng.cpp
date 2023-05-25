@@ -14,13 +14,25 @@
 #include "Utils.h"
 #include "Define.h"
 
+bool NetModule::moduleInit()
+{
+    GetInstance()->start();
+    return true;
+}
+
+
+bool NetModule::moduleDestroy()
+{
+    GetInstance()->stop();
+    return true;
+}
 
 /**
  * @brief polling thread function, implemented with epoll
  * 
  * @param listen_fd
  */
-void NetMng::pollThread(int listen_fd)
+void NetModule::pollThread(int listen_fd)
 {
     struct epoll_event evlist[100];
 
@@ -53,7 +65,7 @@ void NetMng::pollThread(int listen_fd)
     }
 }
 
-void NetMng::doAccept(int listen_fd)
+void NetModule::doAccept(int listen_fd)
 {
     sockaddr_in in_addr;
     socklen_t size = sizeof(in_addr);
@@ -87,7 +99,7 @@ void NetMng::doAccept(int listen_fd)
     }
 }
 
-void NetMng::doRecv(int client_fd)
+void NetModule::doRecv(int client_fd)
 {
     Connection *conn = getConnection(client_fd);
     if ( nullptr == conn )
@@ -123,7 +135,7 @@ void NetMng::doRecv(int client_fd)
     }
 }
 
-void NetMng::doSend(int client_fd)
+void NetModule::doSend(int client_fd)
 {
     Connection *conn = getConnection(client_fd);
     if ( nullptr == conn )
@@ -152,7 +164,7 @@ void NetMng::doSend(int client_fd)
 }
 
 
-void NetMng::closeConnection(Connection *conn)
+void NetModule::closeConnection(Connection *conn)
 {
     struct epoll_event ev;
     if (epoll_ctl(epoll_fd_, EPOLL_CTL_DEL, conn->getSockId() , &ev) < 0)
@@ -173,7 +185,7 @@ void NetMng::closeConnection(Connection *conn)
  * @param data data to send
  * @param len length of the data
  */
-void NetMng::sendData(int dpid, char* data, int len)
+void NetModule::sendData(int dpid, char* data, int len)
 {
     Connection* conn = getConnection(dpid);
     if( nullptr == conn )
@@ -197,7 +209,7 @@ void NetMng::sendData(int dpid, char* data, int len)
  * @brief set up the environment and start the network module
  * 
  */
-void NetMng::start()
+void NetModule::start()
 {
     sockaddr_in svr_addr;
 
@@ -248,7 +260,7 @@ void NetMng::start()
 
     for(int i=0; i<4; i++)
     {
-        std::thread* t = new std::thread(&NetMng::pollThread, this, listen_fd);
+        std::thread* t = new std::thread(&NetModule::pollThread, this, listen_fd);
         select_list_.push_back(t);
     }
 
@@ -259,7 +271,7 @@ void NetMng::start()
  * @brief stop the network module and clear up
  * 
  */
-void NetMng::stop()
+void NetModule::stop()
 {
     active_ = false;
 
@@ -273,7 +285,7 @@ void NetMng::stop()
 }
 
 
-Connection* NetMng::getConnection(int fd)
+Connection* NetModule::getConnection(int fd)
 {
     auto res = connection_map_.find(fd);
     if(res != connection_map_.end())
