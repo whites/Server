@@ -25,8 +25,8 @@ class NetModule : public Module
         NetModule& operator=(const NetModule&) = delete;
 
     public:
-        bool moduleInit();
-        bool moduleDestroy();
+        bool moduleInit() override;
+        bool moduleDestroy() override;
     
     private:
         int port_ = 3000;
