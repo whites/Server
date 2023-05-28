@@ -16,6 +16,11 @@
 
 bool NetModule::moduleInit()
 {
+    APP_GET_TABLE("Network");
+    APP_GET_NUMBER("Port", port_);
+    APP_END_TABLE();
+
+    INFO("port: [%d]", port_);
     GetInstance()->start();
     return true;
 }
@@ -70,7 +75,7 @@ void NetModule::doAccept(int listen_fd)
     sockaddr_in in_addr;
     socklen_t size = sizeof(in_addr);
     int client_fd;
-    while (true) // control the numer of new connections per loop
+    while (true) // control the numer of new connections per loop to prevent starvation
     {
         client_fd = accept(listen_fd, (sockaddr *)&in_addr, &size);
         if (client_fd < 0)

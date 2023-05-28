@@ -24,15 +24,30 @@ namespace EPollUtils
 
 namespace LuaUtils
 {
-    int doFile( lua_State* L, const char* filename);
+    int doFile(lua_State *L, const char *filename);
 
-    int getTable(lua_State* L, int tableIndex, const char* key);
+    int getTable(lua_State *L, int tableIndex, const char *key);
 
-    template<typename T>
-    void getNumber(lua_State* L, int tableIndex, const char* key, T& t);
+    template <typename T>
+    inline void getNumber(lua_State *L, int tableIndex, const char *key, T &t);
 
-    void getString(lua_State* L, int tableIndex, const char* key, char* dstStr, size_t strLen);
+    void getString(lua_State *L, int tableIndex, const char *key, char *dstStr, size_t strLen);
     
+}
+
+template<typename T>
+inline void LuaUtils::getNumber(lua_State* L, int tableIndex, const char* key, T& t)
+{
+    lua_pushvalue(L, tableIndex);
+    lua_pushstring(L, key);
+    lua_gettable(L, -2);
+
+    if(!lua_isnil(L, -1))
+    {
+        t = (T)lua_tonumber(L, -1);
+    }
+
+    lua_pop(L, 2);
 }
 
 #endif /* SOCKETUTILS_H_ */

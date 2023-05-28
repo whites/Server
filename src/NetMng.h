@@ -29,7 +29,7 @@ class NetModule : public Module
         bool moduleDestroy() override;
     
     private:
-        int port_ = 3000;
+        int port_ = -1;
         int epoll_size_ = 1024;
 
         int epoll_fd_;

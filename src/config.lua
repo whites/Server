@@ -1,5 +1,12 @@
 AppConfig =
 {
-    ServerIP = "0.0.0.0",
-    Port = 3000,
+    -- base config
+
+    -- module config
+    Network =
+    {
+        IP = "0.0.0.0",
+        Port = 3000,
+    }
+
 }
