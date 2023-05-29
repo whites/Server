@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/Buffer.cpp.o -c /home/ubuntu/code/Server/src/Buffer.cpp",
+  "file": "/home/ubuntu/code/Server/src/Buffer.cpp"
+},
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/Connection.cpp.o -c /home/ubuntu/code/Server/src/Connection.cpp",
+  "file": "/home/ubuntu/code/Server/src/Connection.cpp"
+},
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/NetMng.cpp.o -c /home/ubuntu/code/Server/src/NetMng.cpp",
+  "file": "/home/ubuntu/code/Server/src/NetMng.cpp"
+},
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/ServerApp.cpp.o -c /home/ubuntu/code/Server/src/ServerApp.cpp",
+  "file": "/home/ubuntu/code/Server/src/ServerApp.cpp"
+},
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/Utils.cpp.o -c /home/ubuntu/code/Server/src/Utils.cpp",
+  "file": "/home/ubuntu/code/Server/src/Utils.cpp"
+},
+{
+  "directory": "/home/ubuntu/code/Server/build/bin",
+  "command": "/usr/bin/c++  -I/home/ubuntu/code/Server/src/../third_party/include -g -std=c++11  -O0 -Wall -g2 -ggdb -o CMakeFiles/Server.dir/main.cpp.o -c /home/ubuntu/code/Server/src/main.cpp",
+  "file": "/home/ubuntu/code/Server/src/main.cpp"
+}
+]

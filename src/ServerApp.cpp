@@ -14,6 +14,7 @@ bool ServerApp::init( int argc, char** argv)
     char* strvar = nullptr;
     int opt;
 
+    // parse args
     while ((opt = getopt(argc, argv, "c:")) != EOF)
     {
         switch (opt)
@@ -29,6 +30,7 @@ bool ServerApp::init( int argc, char** argv)
         }
     }
 
+    // set limit
     struct rlimit rlim_core;
 
 	rlim_core.rlim_cur = RLIM_INFINITY;	// Soft limit
